@@ -24,7 +24,7 @@ class Obstacle {
         }
         if(obstacleType === 2) {
             const potholeImg = new Image();
-            potholeImg.src = "../images/pothole.png";
+            potholeImg.src = "../images/rock.png";
             return potholeImg;
         }
         if(obstacleType === 3) {

@@ -126,6 +126,57 @@ class Monsterr {
     }
   }
 
+  attacSprite(playerDirection) {
+    switch(playerDirection) {
+      case 1: // up
+        if (this.spriteY > 768 || this.spriteY < 768) {
+          this.spriteY = 768;
+          this.spriteX = 0;
+        } 
+        else if (this.spriteX + 64 > 320)
+          this.spriteX = 64;
+        else
+          this.spriteX += 64;
+        break;
+      case 2: // left
+        if (this.spriteY > 832 || this.spriteY < 832) {
+          this.spriteY = 832;
+          this.spriteX = 0;
+        } 
+        else if (this.spriteX + 64 > 320)
+          this.spriteX = 64;
+        else
+          this.spriteX += 64;
+        break;
+      case 3: // down
+        if (this.spriteY > 896 || this.spriteY < 896) {
+          this.spriteY = 896;
+          this.spriteX = 0;
+        } 
+        else if (this.spriteX + 64 > 320)
+          this.spriteX = 64;
+        else
+          this.spriteX += 64;
+        break;
+      case 4: // right
+        if (this.spriteY > 960 || this.spriteY < 960) {
+          this.spriteY = 960;
+          this.spriteX = 0;
+        } 
+        if (this.spriteX + 64 > 320)
+          this.spriteX = 64;
+        else
+          this.spriteX += 64;
+        break;
+    }
+    if(this.spriteX === 256)
+    {
+      // theGame.playerAttack();
+      
+    }
+    }
+
+
   /**
    * draw the monster on the canvas
    */

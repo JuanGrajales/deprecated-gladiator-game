@@ -56,13 +56,13 @@ class Game {
   createRandomNumberForObstacle(level) {
     let r;
     if(level === 1) {
-      r = Math.floor(Math.random() * 5) + 5;
+      r = Math.floor(Math.random() * 5) + 15;
     }
     if(level === 2) {
-        r = Math.floor(Math.random() * 8) + 5;
+        r = Math.floor(Math.random() * 8) + 15;
     }
     if(level === 3) {
-      r = Math.floor(Math.random() * 10) + 8;
+      r = Math.floor(Math.random() * 10) + 15;
   }
     return r;
   }

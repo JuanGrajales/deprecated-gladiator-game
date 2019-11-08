@@ -54,8 +54,8 @@ function mainLoop() {
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
     // draw the player, money and monster
     theGame.drawPlayer(ctx, spriteX, spriteY);
-    theGame.drawMoney(ctx);
-    theGame.drawMonster(ctx);
+    // theGame.drawMoney(ctx);
+    // theGame.drawMonster(ctx);
     theGame.theSound.playBackground();
     theGame.drawObstacle(ctx);
 
@@ -80,7 +80,7 @@ function mainLoop() {
         if(theGame.monsterCollision(player.x, player.y)) {
 
           // monster3.moveMonster(monster3.x, monster);  
-          // monster3.changeSpriteFrame(monster3.monsterDirection(player.x, player.y));
+          monster3.attacSprite(monster3.monsterDirection(player.x, player.y));
         }
         else {
 

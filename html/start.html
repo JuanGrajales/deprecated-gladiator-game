@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="../styles.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+  <title>Gold Miner</title>
+  <link rel="icon" href="../images/favicon.png" type="image/x-icon" />
+</head>
+
+<body>
+  <!-- <div class="top"></div> -->
+  <!-- <div class="main-content"> -->
+    <div id="game-board" class="container-fluid"> 
+      <canvas id="rock-board" class="container-fluid" width="700" height="700">
+      </canvas>
+   
+      <div class="game-board-left">
+        <div class="score-board">
+          <div class="score">
+            <label>Money</label><span class="score-value">0</span>
+          </div>
+          <div class="timer">
+              <label>Timer</label> <span class="timer-value"></span>
+            </div>
+          <div class="goal">
+            <label>Goal</label><span class="goal-value">0</span>
+          </div>
+          <div class="monster-health">
+              <label>Health</label><span class="monster-health-value">0</span>
+            </div>
+          
+          <button class="pause" onclick="pause()">Pause</button>
+        </div>
+      </div>
+
+    </div>
+  <!-- </div> -->
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content modal-self">
+        <div class="modal-header modal-header-self">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="timeOut()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title win-temp" id="exampleModalLabel">Success! You cleared Level 1</h4>
+          <h4 class="modal-title lose" id="exampleModalLabel">Lost! Please try again</h4>
+        </div>
+        <div class="modal-body">
+          <div class="bonus-instructions">
+            <h5>Great Job! You unlocked the bonuses</h5>
+            <p><em>Energy-Drink</em> - the miner can move really fast for a certain time.</p>
+            <p><em>Bomb</em> - use 'shift key' whenever you find an obstacle and it will clear it for a certain time.
+            </p>
+            <p><em>Lucky-Charm</em> - if you hit the obstacles it will add points to your Money for a certain time.</p>
+            <p>Select and click <strong>'Buy'</strong> or <strong>'No, Thanks'</strong> Good Luck!!!!</p>
+          </div>
+          <div class="unlocked-bonus">
+            <div class="energy-drink">
+              <!-- <span class="bonus-type"> -->
+                <img class="drink-bonus"
+                  src="../images/energy-drink.png">
+                <!-- </span> -->
+                <div class="cost"><input type="checkbox" id="energy-drink-option" name="bonus1"
+                  value="energy-drink" onclick="change(event,250)">$250</div>
+                </div>
+                <div class="bomb">
+                  <!-- <span class="bonus-type"> -->
+                    <img class="bomb-bonus" src="../images/bomb.png">
+                  <!-- </span> -->
+                  <div class="cost"><input type="checkbox" name="bonus2" id="bomb-option" value="bomb"
+                  onclick="change(event,100)">$100</div>
+              </span>
+            </div>
+            <div class="lucky-charm">
+              <!-- <span class="bonus-type"> -->
+                <img class="lucky-charm-bonus"
+                  src="../images/lucky-charm.png">
+                <!-- </span> -->
+                <div class="cost"><input type="checkbox" id="lucky-charm-option" name="lucky-charm"
+                value="lucky-charm" onclick="change(event,200)">$200</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer modal-footer-self">
+            <div class="sales"> 
+                <button class="buy" onclick="buy()">Buy</button>
+                <button class="buy" onclick="notBuy()">No,Thanks</button>
+              </div> 
+              <div class="load">
+          <button type="button" class="btn btn-secondary restart" data-dismiss="modal" onclick="restartLevel()">Try
+            Again</button>
+          <button type="button" class="btn btn-primary start" onclick="start()">Load Next</button>
+          <button type="button" class="btn btn-secondary reset" onclick="restart()">Reset</button>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="characterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content modal-self">
+      <div class="modal-header modal-header-self">
+          <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="close()">
+              <span aria-hidden="true">&times;</span>
+            </!--> 
+        <!-- <img src="../images/coins.gif"> -->
+        <h4 class="modal-title" id="exampleModalLabel">Welcome Miner</h4>
+        <!-- <img src="../images/coins.gif"> -->
+        
+      </div>
+      <div class="modal-body">
+       <button class="instruction" onclick="openInstructions()">Instructions</button>
+       <br>
+       <br>
+        <div class="inst">
+           <div class="controls">
+             <h7><strong>Controls</strong></h7>
+             <div class="top">
+                <div><img class="arr" src="../images/left-arrow.png"></div>
+                <div><img class="arr" src="../images/arrowhead-pointing-to-the-right.png"></div>
+             </div>
+            <div class="bottom">
+                <div><img class="arr" src="../images/caret-arrow-up.png"></div>
+                <div><img class="arr" src="../images/caret-down.png"></div>
+              </div>
+            <img class="space-bar" src="../images/computer_key_Space_bar.png">
+            </div>
+            
+            <img class="coinsGiffy" src="../images/coins.gif">
+            <div class="guide">
+              <p>This game has three levels.</p>
+              <p>Use the controls to catch as much jewells as you can to achieve the goal with in the time limit.</p>
+              <p>Be mindful about the obstacles, it will reduce your score if you hit them.</p>
+              <p>Monsters might paralize you for few seconds if you are in its way.</p>
+              <p>You can use the weapon by pressing space key to reduce the monster's health</p>
+              <p><strong>You can select a player, an armor and a weapon to start the game.</strong></p>
+            </div>
+        </div>
+        <h5>Select Player</h5>
+         <div class="characters">
+           <button class="character" onclick="changeCharacter('h')"><img src="../images/hn-sprite copy.png"></button>
+           <button class="character" onclick="changeCharacter('o')"><img src="../images/on-sprite copy.png"></button>
+           <button class="character" onclick="changeCharacter('s')"><img src="../images/sn-sprite copy.png"></button>
+         </div>
+         <br>
+         <div class="user-options">
+         <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle dropSelf" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Armor
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" onclick="changeCharacter('s')" href="#">Silver Armor</a>
+              <a class="dropdown-item" onclick="changeCharacter('g')" href="#">Gold Armor</a>
+            </div>
+          </div>
+          <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle dropSelf" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Weapon
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" onclick="changeCharacter('s')"href="#">Spear</a>
+                <a class="dropdown-item" onclick="changeCharacter('d')" href="#">Dagger</a>
+              </div>
+            </div>
+            </div>
+      </div>
+
+      <div class="modal-footer modal-footer-character">
+        <img src="../images/creepy-pumpkin.gif">  
+        <h5>Happy Mining !!!</h5>
+        <img src="../images/creepy-pumpkin.gif">  
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="modal-overlay" id="modal-overlay">
+  </div>
+</body>
+
+<script type="text/javascript" src="../js/black-background.js"></script>
+<script type="text/javascript" src="../js/sounds.js"></script>
+<script type="text/javascript" src="../js/player.js"></script>
+<script type="text/javascript" src="../js/monster.js"></script>
+<script type="text/javascript" src="../js/Monsterr.js"></script>
+<script type="text/javascript" src="../js/money.js"></script>
+<script type="text/javascript" src="../js/obstacles.js"></script>
+<script type="text/javascript" src="../js/game.js"></script>
+<script type="text/javascript" src="../js/script.js"></script>
+
+</html>

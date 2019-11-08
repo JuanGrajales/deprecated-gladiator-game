@@ -1,0 +1,414 @@
+body {
+  padding: 0px;
+  text-align: center;
+  overflow: hidden;
+  display:flex;
+  /* background-image: url("./images/wooden.jpeg") ; */
+  flex-direction: column;
+  justify-content: space-around;
+  font-family: Helvetica;
+}
+
+.background-img {
+  background-color: black;
+  background-image: url("./images/background-desert.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  /* cover - covers the entire container */
+  background-size: cover;
+  /* set the height of the background image to 100% of the available space */
+  height: 100vh;
+  width: 100vw;
+  /* remove Boostrap container-fluid padding */
+  padding: 0%;
+  display: flex;
+  /* center intems horizontally */
+  justify-content: center;
+  /* center items vertically */
+  align-items: center;
+  /* align the items inside of this parent class as a column from top to bottom */
+  flex-direction: column;
+}
+
+.background-img > .start-btn {
+  height: 7vh;
+  font-size: 2vw;
+}
+
+.background-img > .home-title {
+  font-family: fantasy;
+  font-size: 8vw;
+  font-weight: bold;
+  /* remove default margin */
+  margin-bottom: 0%;
+}
+
+canvas {
+  height:100vh;
+}
+label {
+  font-size: 25px;
+}
+h2 {
+  font-size: 50px;
+  font-weight: bold;
+}
+h4 {
+  font-size: 25px;
+  font-weight: bold;
+}
+h5 {
+  font-size: 20px;
+  font-weight: bold;
+}
+.top {
+  height: 5vh;
+  width:100%;
+}
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+.show-popup {
+  display: block;
+}
+.hide-popup {
+  display: none;
+}
+.modal-overlay {
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+/* display:none; */
+background-color: rgba(0,0,0,0.5);
+}
+#game-board {
+  /* float: left;
+  padding: 10px;
+  background-color: rgba(240, 167, 11, 0.877);
+  color: black; */
+display: flex;
+padding: 0;
+}
+.game-board-left{
+  /* .game-board-right */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 10px; */
+  /* height: 50vh; */
+}
+#rock-board{
+background-image: url("./images/creepy-image1.png");
+background-position: center;
+background-size: contain;
+height: 100vh;
+padding:  0;
+
+
+/* testing different background */
+/* background-image: url("./images/desert-terrain1.jpg"); 
+background-repeat: repeat; */
+
+}
+.score-board {
+  height: 10vh;
+  width: 100vw; 
+  display:flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  color:white;
+  position: absolute;
+  top: 1%;
+  right: 0.5%;
+  padding: 0;
+}
+.pause {
+  background-color:rgba(240, 167, 11, 0.877);
+  color: black;
+  border: 2px solid black;
+  font-weight: bold;
+}
+.pause:hover, .pause:active {
+  background-color:white;
+  color: black;
+  border: 2px solid black;
+  font-weight: bold;
+}
+.score, .goal, .timer, .monster-health{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  /* font-size: 50px; */
+  width: 10vw;
+}
+.reset, .start, .restart, .buy, .pause, .instruction, .dropSelf {
+  /* width: 12vw;
+  height: 6vh; */
+  width: 6.5vw;
+  height: 5vh;
+  border-radius: 10px;
+  padding:2px;
+}
+.start, .restart, .buy, .reset, .instruction, .dropSelf{
+  background-color: rgba(63, 30, 4, 0.877);
+  color: white;
+  border-color:black;
+  white-space: nowrap;
+}
+.start:hover, .start:active, .restart:hover, .restart:active, .buy:hover, .buy:active,.reset:hover, .reset:active, .instruction:hover,.instruction:active, .dropSelf:hover, .dropSelf:active {
+  background-color:rgba(240, 167, 11, 0.877);
+  color: black;
+  border: 2px solid rgba(94, 39, 3, 0.877);
+  font-weight: bold;
+}
+.unlocked-bonus {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  line-height: 0.05em;
+}
+.drink-bonus, .bomb-bonus, .lucky-charm-bonus{
+  height: 10vh;
+  width: 5vw;
+}
+.energy-drink, .bomb, .lucky-charm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 17vh;
+}
+.sales, .load {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 14vw;
+}
+.banner {
+  height: 100vh;
+  width: 100vw;
+  display:flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+}
+.instructions {
+  border: 4px solid rgba(240, 167, 11, 0.877);
+  background-color: rgba(238, 149, 66, 0.877);
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+}
+.gold-miner-promo {
+  border: 4px solid rgba(240, 167, 11, 0.877);
+  height: 70vh;
+  width: 40vw;
+}
+.img-own {
+  height: 69vh;
+  width: 30vw;
+}
+.score-value, .goal-value, .timer-value, .modal-header-self,.monster-health-value{
+  font-size: 30px;
+  font-weight: bold;
+}
+.lose, .win-temp {
+  /* color:rgba(45, 110, 7, 0.877); */
+  color: black;
+}
+.score-value, .goal-value, .timer-value, .monster-health-value {
+  /* color: rgba(180, 34, 8, 0.877); */
+  color: white;
+}
+/* .modal-self {
+  background-color: rgba(240, 167, 11, 0.877);
+} */
+.modal-header-self {
+border: none;
+display: block;
+/* height: 5vh; */
+}
+.modal-footer-self{
+  border: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.bonus-instructions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 2px;
+  /* background-color: rgba(7, 102, 7, 0.877); */
+  color: black;
+}
+.bonus-instructions em {
+  font-weight: bold;
+  font-size: 15px;
+}
+.characters {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.characters img {
+  height: 100px;
+  width: 100px;
+}
+.modal-footer-character {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border: none;
+ 
+}
+.modal-footer-character img{
+  height: 12vh;
+  width: 8vw;
+}
+.character:hover, .character:active {
+width: 15vw;
+height: 20vh;
+border: 2px solid rgba(233, 99, 10, 0.877);
+}
+.coinsGiffy {
+  height: 12vh;
+  width: 8vw;
+  float: right;
+}
+.arr {
+  height: 2vh;
+  width: 1vw;
+}
+.space-bar {
+  height: 3vh;
+  width: 8vw;
+  position: relative;
+  top: -20px;
+}
+.top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  position: relative;
+  top: 24px;
+}
+.bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: relative;
+  top: -33px;
+  height: 8vh;
+}
+.controls {
+float:left;
+width: 10vw;
+height: 14vh;
+
+}
+.guide {
+  padding: 2px;
+  line-height: 1.2;
+  font-size: 13px;
+}
+.user-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+
+@media only screen and (max-width : 1275px) {
+  .start, .restart, .buy, .reset, .pause{
+    width: 8.5vw;
+  }
+  .sales, .load {
+    width: 30vw;
+  }
+ 
+}
+@media only screen and (max-width : 1100px) {
+  .start, .restart, .buy, .reset, .pause{
+    width: 10vw;
+  }
+  .sales, .load {
+    width: 30vw;
+  }
+ 
+}
+@media only screen and (max-width : 875px) {
+  .start, .restart, .buy, .reset, .pause{
+    width: 12vw;
+  }
+  .sales, .load {
+    width: 30vw;
+  }
+ 
+}
+@media only screen and (max-width : 700px) {
+  .start, .restart, .buy, .reset, .pause {
+    width: 15vw;
+  }
+  .sales, .load {
+    width: 40vw;
+  }
+ 
+}
+@media only screen and (max-width : 600px) {
+  label, .score-value, .goal-value, .timer-value {
+    font-size: 20px;
+  }
+  #rock-board {
+    height: 100%;
+    margin-top: 16%;
+  }
+  .score-board {
+    top: 12%;
+  }
+  .start, .restart, .buy, .reset, .pause{
+    width: 18vw;
+    font-size: 12px;
+  }
+  .sales, .load {
+    width: 50vw;
+  }
+  .modal-body {
+    padding: 0;
+  }
+ 
+}
+@media only screen and (max-width : 500px) {
+  #rock-board {
+    margin-top: 25%;
+  }
+  .score-board {
+    top: 15%;
+   
+  }
+}
+@media only screen and (max-width : 350px) {
+  h4 {
+    font-size:20px;
+  }
+  h5 {
+    font-size: 18px;
+  }
+ .bonus-instructions, em {
+   font-size: 13px;
+ }
+}

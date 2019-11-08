@@ -29,7 +29,7 @@ class Obstacle {
         }
         if(obstacleType === 3) {
             const pumpkinImg = new Image();
-            pumpkinImg.src = "../images/pumpkin.png";
+            pumpkinImg.src = "../images/rock.png";
             return pumpkinImg;
         }
     }

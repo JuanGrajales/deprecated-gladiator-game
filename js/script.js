@@ -14,7 +14,7 @@ let i = 10000;
 let imgType;
 // controls how fast the character moves
 let characterSpeed = 6;
-let timerValue = 2000;
+let timerValue = 1000;
 let bonusArray = [];
 let bombBonusFlag = false;
 // let startWithBonusFlag = true;
@@ -98,7 +98,7 @@ function mainLoop() {
 
     
     if(frames % 5 === 0){
-      theGame.drawDirt(ctx);
+      // theGame.drawDirt(ctx);
     }
     // theGame.drawBackground(ctx);
     if (theGame.level === 3) {
@@ -118,11 +118,11 @@ function mainLoop() {
   
   if (startGame) {
     setTimerValue();
-    createEarthquake = setInterval(()=>{
-      i = i*-1
-      canvas[0].style.backgroundPositionX = `${i}px`
-      canvas[0].style.transition = 'all 10s'
-    },1000);
+    // createEarthquake = setInterval(()=>{
+    //   i = i*-1
+    //   canvas[0].style.backgroundPositionX = `${i}px`
+    //   canvas[0].style.transition = 'all 10s'
+    // },1000);
     int = window.requestAnimationFrame(mainLoop);
     pauseFlag = false;
   } else {
@@ -139,7 +139,7 @@ monster2.moveMonster(canvasWidth, canvasHeight);
 function movePumpkinObs() {
   theGame.obstacleArray.forEach(obs =>{
     if(obs.i.obstacleType === 3) {
-      obs.i.movePumpkin(obs.i.y, canvasHeight, obs.i.obstacleType);
+      // obs.i.movePumpkin(obs.i.y, canvasHeight, obs.i.obstacleType);
     }    
   })
   }  
@@ -437,7 +437,7 @@ function setTimerValue() {
 // start of the game
 function initialLoad() {
   theGame.scoreByLevel = 0;
-  timerValue = 2000;
+  timerValue = 1000;
   frames = 0;
   startGame = true;
   player.x = 0;
@@ -452,6 +452,10 @@ function nextLoad() {
   theGame.createMoney();
   // theGame.createBackground();
   monster3.health = 100;
+  monsterDeadCount = 0;
+  monster3.x = canvasWidth/2;
+  monster3.y = canvasHeight/2;
+  document.getElementsByClassName('monster-health-value')[0].innerText = monster3.health;
   theGame.createObstacle();
   if(characterSpeed >10){
     theGame.theSound.playPowerUp();
@@ -543,6 +547,7 @@ function changeCharacter(playerType) {
     document.getElementById('modal-overlay').classList.add('hide-popup');
     theGame.applySelectedPlayer(theGame.playerSelected);
     movePumpkinObs();
+    document.getElementsByClassName('monster-health-value')[0].innerText = monster3.health;
   mainLoop();
   moveKey();
   }

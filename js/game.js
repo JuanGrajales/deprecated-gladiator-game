@@ -134,13 +134,13 @@ class Game {
 
   setGoal(level) {
    if(level === 1) {
-    this.goal = 1000;
+    this.goal = 100;
    } 
    if(level === 2) {
-     this.goal = 2000;
+     this.goal = 200;
    }
    if(level === 3) {
-     this.goal = 5000;
+     this.goal = 300;
    }
     
     return this.goal;
@@ -463,7 +463,7 @@ applySelectedPlayer(playerSelected) {
           // figure out how to remove the monster
         }
       }
-
+      document.getElementsByClassName('monster-health-value')[0].innerText = this.theMonster3.health;
       // document.onkeyup = function (e) {
       //   while(e.key != "a") {
       //     if(this.monsterCollision(playerX, playerY)){
